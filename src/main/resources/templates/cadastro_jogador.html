@@ -17,7 +17,7 @@
             </div>
 
             <div>
-                <label for="email">Email:</label>
+                <label for="email">E-mail:</label>
                 <input type="email" id="email" name="email" th:field="*{email}" required/>
             </div>
             <div>
@@ -26,13 +26,11 @@
             </div>
 
             <div>
-                <label for="grupoCodinome">Grupo:</label>
-                <select id="grupoCodinome" name="grupoCodinome" th:field="*{grupoCodinome}">
-                    <option value="" disabled selected>Selecione um grupo</option>
-                    <option th:each="grupo : ${grupoCodinomes}"
-                        th:value="${grupo}"
-                        th:text="${grupo}">Grupo</option>
-                </select>
+                <label>Grupo:</label><br/>
+                <div th:each="grupo : ${grupoCodinomes}">
+                    <input type="radio" th:field="*{grupoCodinome}" th:value="${grupo}" th:id="${'grupo_' + grupo}"/>
+                    <label th:for="${'grupo_' + grupo}" th:text="${grupo}"></label><br/>
+                </div>
             </div>
 
             <div>
@@ -42,3 +40,4 @@
         </form>
     </div>
 </body>
+</html>
