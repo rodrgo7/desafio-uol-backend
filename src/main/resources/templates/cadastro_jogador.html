@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Cadastro de Jogador</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Cadastrar jogadores</h1>
+
+        <form th:action="@{/cadastro-jogador}" th:object="${jogador}" method="post">
+            <div>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" th:field="*{nome}" required/>
+            </div>
+
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" th:field="*{email}" required/>
+            </div>
+            <div>
+                <label for="telefone">Telefone:</label>
+                <input type="text" id="telefone" name="telefone" th:field="*{telefone}" required/>
+            </div>
+
+            <div>
+                <label for="grupoCodinome">Grupo:</label>
+                <select id="grupoCodinome" name="grupoCodinome" th:field="*{grupoCodinome}">
+                    <option value="" disabled selected>Selecione um grupo</option>
+                    <option th:each="grupo : ${grupoCodinomes}"
+                        th:value="${grupo}"
+                        th:text="${grupo}">Grupo</option>
+                </select>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <a th:href="@{/listagem-jogadores}" class="btn btn-primary">Listar jogadores</a>
+            </div>
+        </form>
+    </div>
+</body>
