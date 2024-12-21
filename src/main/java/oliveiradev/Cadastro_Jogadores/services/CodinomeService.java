@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import oliveiradev.Cadastro_Jogadores.entity.CodinomeRepositoryFactory;
 import oliveiradev.Cadastro_Jogadores.entity.enums.GrupoCodinome;
+import oliveiradev.Cadastro_Jogadores.exception.CodinomesIndisponiveisException;
 
 @Service
 public class CodinomeService {
@@ -18,7 +19,7 @@ public class CodinomeService {
     public String gerarCodinome (GrupoCodinome grupoCodinome, List<String> codinomeEmUso) throws Exception {
     var codinomeDisponiveis = listarCodinomesDisponiveis(grupoCodinome, codinomeEmUso);
         if (codinomeDisponiveis.isEmpty())
-            throw new Exception("Não há codinomes disponiveis para o grupo " + grupoCodinome.getNome());
+            throw new CodinomesIndisponiveisException();
         
         var codinomeSorteado = sortearCodinome(codinomeDisponiveis);
             

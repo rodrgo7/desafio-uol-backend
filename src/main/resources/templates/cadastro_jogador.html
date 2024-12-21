@@ -14,11 +14,13 @@
             <div>
                 <label for="nome">Nome:</label>
                 <input type="text" id="nome" name="nome" th:field="*{nome}" required/>
+                <div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Campo obrigatório!</div>
             </div>
 
             <div>
                 <label for="email">E-mail:</label>
                 <input type="email" id="email" name="email" th:field="*{email}" required/>
+                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Campo obrigatório!</div>
             </div>
             <div>
                 <label for="telefone">Telefone:</label>
@@ -31,11 +33,17 @@
                     <input type="radio" th:field="*{grupoCodinome}" th:value="${grupo}" th:id="${'grupo_' + grupo}"/>
                     <label th:for="${'grupo_' + grupo}" th:text="${grupo}"></label><br/>
                 </div>
+                <div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Seleção obrigatória</div>
             </div>
 
             <div>
                 <button type="submit" class="btn btn-primary">Cadastrar</button>
                 <a th:href="@{/listagem-jogadores}" class="btn btn-primary">Listar jogadores</a>
+            </div>
+
+            <div th:if="${errorMessag}">
+                <p th:text="${errorMessag}" class="alert alert-danger"></p>
+                <!-- <p th:text="${errorMessag}" style="color: red;"></p>-->
             </div>
         </form>
     </div>
